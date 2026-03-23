@@ -1542,7 +1542,7 @@ static void doRepairType3or5Common(FILE* inputFID, FILE* outputFID) {
 
       putStartCode(outputFID);
       while (nalSize-- > 0) {
-	wr(fgetc(inputFID));
+        wr(fgetc(inputFID));
       }
     }
   }
