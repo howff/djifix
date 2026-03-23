@@ -4,9 +4,6 @@ on:
   push:
     paths:
       - '**.c'
-      - '**.cpp'
-      - '**.h'
-      - '**.hpp'
   workflow_dispatch:
 
 jobs:
@@ -25,19 +22,19 @@ jobs:
       - name: Compile source code
         run: |
           mkdir build
-          gcc src/djifix.c -o build/djifix.exe
+          gcc djifix.c -o djifix.exe
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-exe
-          path: build/djifix.exe
+          path: djifix.exe
 
       # Create a GitHub Release (only on tag)
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: build/djifix.exe
+          files: djifix.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
